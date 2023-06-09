@@ -12,6 +12,9 @@ export const deleteUser = async (req, res, next) => {
 };
 export const getUser = async (req, res, next) => {
   const user = await User.findById(req.params.id);
-
   res.status(200).send(user);
+};
+export const getUsers = async (req, res, next) => {
+  const users = await User.find();
+  res.status(200).send(users);
 };

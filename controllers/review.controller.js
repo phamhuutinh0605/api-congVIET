@@ -4,7 +4,7 @@ import Gig from "../models/gig.model.js";
 
 export const createReview = async (req, res, next) => {
   if (req.isSeller)
-    return next(createError(403, "Sellers can't create a review!"));
+    return next(createError(403, "Những người bán không thể đánh giá"));
 
   const newReview = new Review({
     userId: req.userId,
@@ -20,9 +20,7 @@ export const createReview = async (req, res, next) => {
     });
 
     if (review)
-      return next(
-        createError(403, "You have already created a review for this gig!")
-      );
+      return next(createError(403, "Bạn đã đánh giá việc làm này rồi!"));
 
     //TODO: check if the user purchased the gig.
 

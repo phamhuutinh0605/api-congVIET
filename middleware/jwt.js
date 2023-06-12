@@ -6,7 +6,7 @@ export const verifyToken = (req, res, next) => {
   if (!token) return next(createError(401, "Bạn không có quyền!"));
 
   jwt.verify(token, process.env.JWT_KEY, async (err, payload) => {
-    if (err) return next(createError(403, "Token is not valid!"));
+    if (err) return next(createError(403, "Token này không đúng!"));
     req.userId = payload.id;
     req.isSeller = payload.isSeller;
     next();

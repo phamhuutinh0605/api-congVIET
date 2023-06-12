@@ -13,7 +13,7 @@ export const register = async (req, res, next) => {
     });
 
     await newUser.save();
-    res.status(201).send("User has been created.");
+    res.status(201).send("User được tạo thành công");
   } catch (err) {
     next(err);
   }
@@ -22,11 +22,11 @@ export const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
 
-    if (!user) return next(createError(404, "User not found!"));
+    if (!user) return next(createError(404, "Không tìm thấy tài khoản này!"));
 
     const isCorrect = bcrypt.compareSync(req.body.password, user.password);
     if (!isCorrect)
-      return next(createError(400, "Wrong password or username!"));
+      return next(createError(400, "Tài khoản hoặc mật khẩu không đúng!"));
 
     const token = jwt.sign(
       {
@@ -36,7 +36,6 @@ export const login = async (req, res, next) => {
       process.env.JWT_KEY,
       { expiresIn: 60 * 60 * 5 }
     );
-
     const { password, ...info } = user._doc;
     res
       .cookie("accessToken", token, {
@@ -56,5 +55,5 @@ export const logout = async (req, res) => {
       secure: true,
     })
     .status(200)
-    .send("User has been logged out.");
+    .send("User đã đăng xuất.");
 };

@@ -4,6 +4,20 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
+  const findUserByUsername = await User.findOne({
+    username: req.body.username,
+  });
+  const findUserByEmail = await User.findOne({ email: req.body.email });
+  const findUserByPhone = await User.findOne({ phone: req.body.phone });
+  if (findUserByUsername) {
+    return next(createError(404, "Username này đã được đăng kí!"));
+  }
+  if (findUserByEmail) {
+    return next(createError(404, "Email này đã được đăng kí!"));
+  }
+  if (findUserByPhone) {
+    return next(createError(404, "Số điện thoại này đã được đăng kí!"));
+  }
   try {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);

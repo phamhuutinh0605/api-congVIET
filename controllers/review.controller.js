@@ -7,7 +7,7 @@ export const createReview = async (req, res, next) => {
     return next(createError(403, "Những người bán không thể đánh giá"));
 
   const newReview = new Review({
-    userId: req.userId,
+    userId: req.body.userId,
     gigId: req.body.gigId,
     desc: req.body.desc,
     star: req.body.star,
@@ -16,9 +16,8 @@ export const createReview = async (req, res, next) => {
   try {
     const review = await Review.findOne({
       gigId: req.body.gigId,
-      userId: req.userId,
+      userId: req.body.userId,
     });
-
     if (review)
       return next(createError(403, "Bạn đã đánh giá việc làm này rồi!"));
 

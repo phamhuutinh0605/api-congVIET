@@ -51,6 +51,7 @@ export const login = async (req, res, next) => {
       { expiresIn: 60 * 60 * 5 }
     );
     const { password, ...info } = user._doc;
+    res.cookie("accessToken", token, { maxAge: 3600000 * 24 });
     res.status(200).send({ user, token });
   } catch (err) {
     res.status(500).json({

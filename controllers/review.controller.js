@@ -3,8 +3,6 @@ import Review from "../models/review.model.js";
 import Gig from "../models/gig.model.js";
 
 export const createReview = async (req, res, next) => {
-  if (req.isSeller)
-    return next(createError(403, "Những người bán không thể đánh giá!"));
   if (!req.body.desc)
     return next(createError(403, "Bạn chưa nhập nội dung đánh giá!"));
   const newReview = new Review({

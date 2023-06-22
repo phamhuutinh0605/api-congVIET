@@ -1,5 +1,5 @@
 {
-  "rewrites": [{ "source": ".(*)", "destination": "/api" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
   "env": {
     "MONGO": "mongodb+srv://huutinh:huutinh@cluster0.ilkhtrc.mongodb.net/congviet-api?retryWrites=true&w=majority",
     "JWT_KEY": "9ef7e50b6a2f7d9dd5e9f7c14b29ff11"

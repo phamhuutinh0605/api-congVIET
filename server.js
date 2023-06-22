@@ -18,7 +18,7 @@ mongoose.set("strictQuery", true);
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO);
+    await mongoose.connect("mongodb+srv://huutinh:huutinh@cluster0.ilkhtrc.mongodb.net/congviet-api?retryWrites=true&w=majority");
     console.log("Connected to mongoDB!");
   } catch (error) {
     console.log(error);

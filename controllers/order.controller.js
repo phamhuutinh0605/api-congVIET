@@ -8,13 +8,12 @@ export const intent = async (req, res, next) => {
   const gig = await Gig.findById(req.params.id);
 
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: gig.price * 100,
-    currency: "usd",
+    amount: gig.price,
+    currency: "vnd",
     automatic_payment_methods: {
       enabled: true,
     },
   });
-
   const newOrder = new Order({
     gigId: gig._id,
     img: gig.cover,
@@ -24,7 +23,6 @@ export const intent = async (req, res, next) => {
     price: gig.price,
     payment_intent: paymentIntent.id,
   });
-
   await newOrder.save();
 
   res.status(200).send({

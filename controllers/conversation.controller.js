@@ -8,6 +8,8 @@ export const createConversation = async (req, res, next) => {
     buyerId: req.isSeller ? req.body.to : req.userId,
     readBySeller: req.isSeller,
     readByBuyer: !req.isSeller,
+    username: req.body.username,
+    usernameSeller: req.body.usernameSeller,
   });
 
   try {
@@ -24,8 +26,6 @@ export const updateConversation = async (req, res, next) => {
       { id: req.params.id },
       {
         $set: {
-          // readBySeller: true,
-          // readByBuyer: true,
           ...(req.isSeller ? { readBySeller: true } : { readByBuyer: true }),
         },
       },

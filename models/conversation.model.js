@@ -24,6 +24,14 @@ const ConversationSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    username: {
+      type: String,
+      required: true,
+    },
+    usernameSeller: {
+      type: String,
+      required: true,
+    },
     lastMessage: {
       type: String,
       required: false,

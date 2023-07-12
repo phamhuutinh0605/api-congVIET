@@ -21,9 +21,9 @@ export const createGig = async (req, res, next) => {
 };
 export const deleteGig = async (req, res, next) => {
   try {
-    const gig = await Gig.findById(req.params.id);
-    if (gig.userId !== req.userId)
-      return next(createError(403, "Bạn chỉ có thể xóa việc làm của bạn!"));
+    // const gig = await Gig.findById(req.params.id);
+    // if (gig.userId !== req.userId)
+    //   return next(createError(403, "Bạn chỉ có thể xóa việc làm của bạn!"));
 
     await Gig.findByIdAndDelete(req.params.id);
     res.status(200).send("Công việc này đã bị xóa!");

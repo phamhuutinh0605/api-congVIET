@@ -53,7 +53,7 @@ export const getOrders = async (req, res, next) => {
   try {
     const orders = await Order.find({
       ...(req.isSeller ? { sellerId: req.userId } : { buyerId: req.userId }),
-      isCompleted: true,
+      // isCompleted: true,
     });
 
     res.status(200).send(orders);
@@ -75,6 +75,15 @@ export const confirm = async (req, res, next) => {
     );
 
     res.status(200).send("Order has been confirmed.");
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteOrder = async (req, res, next) => {
+  try {
+    await Order.findByIdAndDelete(req.params.id);
+    res.status(200).send("Đơn hàng này đã được xóa!");
   } catch (err) {
     next(err);
   }

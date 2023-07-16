@@ -65,7 +65,7 @@ const GigSchema = new Schema(
     },
     isSeller: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   {

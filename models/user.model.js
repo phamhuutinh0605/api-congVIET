@@ -29,11 +29,19 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    linkedIn: {
+      type: String,
+      required: true,
+    },
     desc: {
       type: String,
       required: false,
     },
     isSeller: {
+      type: Boolean,
+      default: false,
+    },
+    isAdmin: {
       type: Boolean,
       default: false,
     },

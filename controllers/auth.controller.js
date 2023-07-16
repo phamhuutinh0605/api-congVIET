@@ -27,6 +27,7 @@ export const register = async (req, res, next) => {
     });
 
     await newUser.save();
+    console.log(newUser);
     res.status(201).send("User được tạo thành công");
   } catch (err) {
     next(err);
@@ -47,7 +48,7 @@ export const login = async (req, res, next) => {
         id: user._id,
         isSeller: user.isSeller,
       },
-     "9ef7e50b6a2f7d9dd5e9f7c14b29ff11",
+      "9ef7e50b6a2f7d9dd5e9f7c14b29ff11",
       { expiresIn: 60 * 60 * 5 }
     );
     const { password, ...info } = user._doc;

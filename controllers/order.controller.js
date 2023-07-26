@@ -19,6 +19,7 @@ export const intent = async (req, res, next) => {
     img: gig.cover,
     title: gig.title,
     buyerId: req.userId,
+    usernameBuyer: req.body.username,
     sellerId: gig.userId,
     price: gig.price,
     payment_intent: paymentIntent.id,

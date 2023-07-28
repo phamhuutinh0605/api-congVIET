@@ -4,13 +4,11 @@ import {
   getOrders,
   intent,
   confirm,
-  createOrder,
   deleteOrder,
 } from "../controllers/order.controller.js";
 
 const router = express.Router();
 
-router.post("/:gigId", verifyToken, createOrder);
 router.get("/", verifyToken, getOrders);
 router.post("/create-payment-intent/:id", verifyToken, intent);
 router.put("/", verifyToken, confirm);

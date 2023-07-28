@@ -8,7 +8,6 @@ export const createGig = async (req, res, next) => {
   });
   try {
     const savedGig = await newGig.save();
-    console.log(savedGig);
     res.status(201).json(savedGig);
   } catch (err) {
     next(err);

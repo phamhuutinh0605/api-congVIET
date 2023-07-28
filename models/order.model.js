@@ -35,6 +35,10 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
+    usernameBuyer:{
+      type:String,
+      require:true
+    }
   },
   {
     timestamps: true,
